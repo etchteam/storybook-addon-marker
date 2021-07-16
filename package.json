@@ -1,5 +1,5 @@
 {
-  "name": "storybook-addon-marker",
+  "name": "@etchteam/storybook-addon-marker",
   "version": "1.0.0",
   "description": "Add a Marker.io feedback button to the storybook UI",
   "main": "dist/preset.js",
