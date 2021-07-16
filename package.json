@@ -1,0 +1,55 @@
+{
+  "name": "storybook-addon-marker",
+  "version": "1.0.0",
+  "description": "Add a Marker.io feedback button to the storybook UI",
+  "main": "dist/preset.js",
+  "files": [
+    "dist/**/*",
+    "README.md",
+    "*.js"
+  ],
+  "scripts": {
+    "prepare": "babel ./src --out-dir ./dist",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/etchteam/storybook-addon-marker.git"
+  },
+  "keywords": [
+    "storybook",
+    "addon",
+    "storybook-addon",
+    "marker",
+    "feedback"
+  ],
+  "author": "danwebb",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/etchteam/storybook-addon-marker/issues"
+  },
+  "storybook": {
+    "displayName": "Marker.io",
+    "icon": "https://uploads-ssl.webflow.com/5f99894738b151bd6232e47c/60966d62d9bb68878120ffdc_safari-pinned-tab.svg"
+  },
+  "peerDependencies": {
+    "@storybook/addons": ">=6",
+    "react": ">=16.x",
+    "react-dom": ">=16.x"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.14.5",
+    "@babel/core": "^7.14.6",
+    "@storybook/addon-actions": "^6.3.4",
+    "@storybook/addon-essentials": "^6.3.4",
+    "@storybook/addon-links": "^6.3.4",
+    "@storybook/react": "^6.3.4",
+    "babel-loader": "^8.2.2",
+    "eslint": "^7.30.0",
+    "eslint-plugin-react": "^7.24.0"
+  },
+  "dependencies": {
+    "@marker.io/browser": "^0.10.0"
+  }
+}
