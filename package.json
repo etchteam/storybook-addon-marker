@@ -29,6 +29,9 @@
   "bugs": {
     "url": "https://github.com/etchteam/storybook-addon-marker/issues"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "storybook": {
     "displayName": "Marker.io",
     "icon": "https://uploads-ssl.webflow.com/5f99894738b151bd6232e47c/60966d62d9bb68878120ffdc_safari-pinned-tab.svg"
