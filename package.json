@@ -1,6 +1,6 @@
 {
   "name": "@etchteam/storybook-addon-marker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Add a Marker.io feedback button to the storybook UI",
   "main": "dist/preset.js",
   "files": [
@@ -34,7 +34,7 @@
   },
   "storybook": {
     "displayName": "Marker.io",
-    "icon": "https://uploads-ssl.webflow.com/5f99894738b151bd6232e47c/60966d62d9bb68878120ffdc_safari-pinned-tab.svg"
+    "icon": "https://raw.githubusercontent.com/etchteam/storybook-addon-marker/master/marker-storybook-logo.png"
   },
   "peerDependencies": {
     "@storybook/addons": ">=6",
