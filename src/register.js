@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { addons, types } from '@storybook/addons';
 import { styled } from '@storybook/theming';
-import { useParameter } from '@storybook/api';
-import markerSDK from '@marker.io/browser';
+import { useChannel } from '@storybook/api';
 import { tint, shade } from 'polished';
 
 export const ADDON_ID = 'marker';
@@ -23,35 +22,24 @@ const StyledButton = styled.button`
   }
 `;
 
-const hideDefaultMarkerButton = () => {
-  const markerBtns = [...document.querySelectorAll('.marker-app #feedback-button')];
-  markerBtns.forEach(markerBtn => markerBtn.style.display = 'none');
-}
-
 const Button = () => {
-  const [widget, setWidget] = useState(false);
-  const { destination, mode, ...config } = useParameter('marker', {});
-
-  useEffect(() => {
-    if (!destination) {
-      return;
+  const [show, setShow] = useState(false);
+  const emit = useChannel({
+    showButton: (buttonShouldShow) => {
+      setShow(buttonShouldShow);
     }
+  });
 
-    markerSDK.loadWidget({
-      destination: destination,
-      ...config
-    }).then((markerWidget) => {
-      hideDefaultMarkerButton();
-      setWidget(markerWidget);
-    });
-  }, [destination]);
+  const handleClick = () => {
+    emit('sendFeedback');
+  }
 
-  if (!widget) {
+  if (!show) {
     return null;
   }
 
   return (
-    <StyledButton onClick={() => widget.capture(mode)}>
+    <StyledButton onClick={handleClick}>
       Feedback
     </StyledButton>
   );

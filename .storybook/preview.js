@@ -1,3 +1,8 @@
+import { addDecorator } from '@storybook/react';
+import withMarker from '../src';
+
+addDecorator(withMarker);
+
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
