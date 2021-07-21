@@ -32,6 +32,17 @@ export const parameters = {
 }
 ```
 
+To set the type of capture to trigger, the optional `mode` property can be added to the marker options:
+
+```js
+export const parameters = {
+  marker: {
+    destination: 'abcd1234567890', // <- Your unique destination ID
+    mode: 'fullscreen', // fullscreen | advanced
+  }
+}
+```
+
 It's possible to pass other Marker options to the `marker` parameter, either globally or per story. For example, custom metadata can be passed per story with the `customData` property:
 
 ```js

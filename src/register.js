@@ -30,7 +30,7 @@ const hideDefaultMarkerButton = () => {
 
 const Button = () => {
   const [widget, setWidget] = useState(false);
-  const { destination, ...config } = useParameter('marker', {});
+  const { destination, mode, ...config } = useParameter('marker', {});
 
   useEffect(() => {
     if (!destination) {
@@ -51,7 +51,7 @@ const Button = () => {
   }
 
   return (
-    <StyledButton onClick={() => widget.capture()}>
+    <StyledButton onClick={() => widget.capture(mode)}>
       Feedback
     </StyledButton>
   );
