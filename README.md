@@ -22,9 +22,14 @@ module.exports = {
 }
 ```
 
-Then create a file called `preview.js` in the same folder and add your [Marker destination](https://marker.io/blog/integrate-web-app-browser-sdk) as a [parameter](https://storybook.js.org/docs/react/writing-stories/parameters):
+Then create a file called `preview.js` in the same folder and add your [Marker destination](https://marker.io/blog/integrate-web-app-browser-sdk) as a [parameter](https://storybook.js.org/docs/react/writing-stories/parameters) as well as the `withMarker` [decorator](https://storybook.js.org/docs/react/writing-stories/decorators):
 
 ```js
+import { addDecorator } from '@storybook/react';
+import withMarker from '@etchteam/storybook-addon-marker/with-marker';
+
+addDecorator(withMarker);
+
 export const parameters = {
   marker: {
     destination: 'abcd1234567890', // <- Your unique destination ID
