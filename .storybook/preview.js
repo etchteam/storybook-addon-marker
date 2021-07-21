@@ -1,5 +1,5 @@
 import { addDecorator } from '@storybook/react';
-import withMarker from '../src';
+import withMarker from '../src/with-marker';
 
 addDecorator(withMarker);
 
