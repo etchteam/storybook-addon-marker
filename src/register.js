@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { addons, types } from '@storybook/addons';
+import { addons, types } from '@storybook/manager-api';
 import { styled } from '@storybook/theming';
 import { useChannel } from '@storybook/api';
 import { tint, shade } from 'polished';
@@ -49,7 +49,6 @@ addons.register(ADDON_ID, () => {
   addons.add(ADDON_ID, {
     title: 'Marker',
     type: types.TOOL,
-    match: ({ viewMode }) => viewMode === 'story',
     render: () => {
       return <Button />;
     },
