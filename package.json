@@ -1,6 +1,6 @@
 {
   "name": "@etchteam/storybook-addon-marker",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Add a Marker.io feedback button to the storybook UI",
   "main": "dist/preset.js",
   "files": [
@@ -10,8 +10,8 @@
   ],
   "scripts": {
     "prepare": "babel ./src --out-dir ./dist",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "repository": {
     "type": "git",
@@ -24,7 +24,7 @@
     "marker",
     "feedback"
   ],
-  "author": "danwebb",
+  "author": "etchteam",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/etchteam/storybook-addon-marker/issues"
@@ -36,23 +36,29 @@
     "displayName": "Marker.io",
     "icon": "https://raw.githubusercontent.com/etchteam/storybook-addon-marker/master/marker-storybook-logo.png"
   },
-  "peerDependencies": {
-    "@storybook/addons": ">=6",
-    "react": ">=16.x",
-    "react-dom": ">=16.x"
-  },
   "devDependencies": {
     "@babel/cli": "^7.14.5",
     "@babel/core": "^7.14.6",
-    "@storybook/addon-actions": "^6.3.4",
-    "@storybook/addon-essentials": "^6.3.4",
-    "@storybook/addon-links": "^6.3.4",
-    "@storybook/react": "^6.3.4",
+    "@babel/preset-env": "^7.21.5",
+    "@babel/preset-react": "^7.18.6",
+    "@storybook/addon-actions": "^7.0.9",
+    "@storybook/addon-essentials": "^7.0.9",
+    "@storybook/addon-links": "^7.0.9",
+    "@storybook/react": "^7.0.9",
+    "@storybook/react-webpack5": "^7.0.9",
     "babel-loader": "^8.2.2",
     "eslint": "^7.30.0",
-    "eslint-plugin-react": "^7.24.0"
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-storybook": "^0.6.12",
+    "storybook": "^7.0.9"
   },
   "dependencies": {
-    "@marker.io/browser": "^0.10.0"
+    "@marker.io/browser": "^0.10.0",
+    "@storybook/api": "^7.0.9",
+    "@storybook/components": "^7.0.9",
+    "@storybook/manager-api": "^7.0.9",
+    "@storybook/preview-api": "^7.0.9",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   }
 }

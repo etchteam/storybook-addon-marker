@@ -3,7 +3,7 @@ module.exports = {
     "browser": true,
     "es2021": true
   },
-  "extends": "plugin:react/recommended",
+  "extends": ["plugin:react/recommended", "plugin:storybook/recommended"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -11,9 +11,7 @@ module.exports = {
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": [
-    "react"
-  ],
+  "plugins": ["react"],
   "rules": {
     "react/display-name": false
   }

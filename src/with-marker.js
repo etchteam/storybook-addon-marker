@@ -1,4 +1,4 @@
-import addons, { makeDecorator, useParameter } from '@storybook/addons';
+import { addons, makeDecorator, useParameter } from '@storybook/preview-api';
 import { ADDON_ID } from './register';
 import markerSDK from '@marker.io/browser';
 
