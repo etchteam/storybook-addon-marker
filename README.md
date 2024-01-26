@@ -12,6 +12,8 @@ npm install @etchteam/storybook-addon-marker --save-dev
 
 ## Configuration
 
+### Storybook
+
 Create a file called `main.js` in your `.storybook` config folder.
 
 Add the following content to it:
@@ -25,16 +27,15 @@ module.exports = {
 Then create a file called `preview.js` in the same folder and add your [Marker destination](https://marker.io/blog/integrate-web-app-browser-sdk) as a [parameter](https://storybook.js.org/docs/react/writing-stories/parameters) as well as the `withMarker` [decorator](https://storybook.js.org/docs/react/writing-stories/decorators):
 
 ```js
-import { addDecorator } from '@storybook/react';
 import withMarker from '@etchteam/storybook-addon-marker/with-marker';
-
-addDecorator(withMarker);
 
 export const parameters = {
   marker: {
     destination: 'abcd1234567890', // <- Your unique destination ID
   }
 }
+
+export const decorators = [withMarker];
 ```
 
 To set the type of capture to trigger, the optional `mode` property can be added to the marker options:
@@ -64,6 +65,12 @@ export default {
 };
 ```
 
-Where to find your Marker destination and other Marker configuration options can be found on the [Marker SDK documentation](https://marker.io/blog/integrate-web-app-browser-sdk).
+### Marker
+
+Your Marker destination and other Marker configuration options can be found on the [Marker SDK documentation](https://marker.io/blog/integrate-web-app-browser-sdk).
+
+The Widget > Button > Button visibility setting should be set to "hidden" as this addon adds a custom feedback button to the Storybook toolbar.
+
+---
 
 Made with ☕ at [Etch](https://etch.co)
