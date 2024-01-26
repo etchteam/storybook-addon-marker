@@ -43,8 +43,8 @@ export default function FeedbackButton() {
     <Button
       style={{
         height: '28px',
-        'margin-block-start': '6px',
-        'margin-inline-start': '4px',
+        marginBlockStart: '6px',
+        marginInlineStart: '4px',
       }}
       key={TOOL_ID}
       active={isActive}
