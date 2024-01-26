@@ -12,6 +12,8 @@ npm install @etchteam/storybook-addon-marker --save-dev
 
 ## Configuration
 
+### Storybook
+
 Create a file called `main.js` in your `.storybook` config folder.
 
 Add the following content to it:
@@ -22,14 +24,9 @@ module.exports = {
 }
 ```
 
-Then create a file called `preview.js` in the same folder and add your [Marker destination](https://marker.io/blog/integrate-web-app-browser-sdk) as a [parameter](https://storybook.js.org/docs/react/writing-stories/parameters) as well as the `withMarker` [decorator](https://storybook.js.org/docs/react/writing-stories/decorators):
+Then create a file called `preview.js` in the same folder and add your [Marker destination](https://marker.io/blog/integrate-web-app-browser-sdk) as a [parameter](https://storybook.js.org/docs/react/writing-stories/parameters).
 
 ```js
-import { addDecorator } from '@storybook/react';
-import withMarker from '@etchteam/storybook-addon-marker/with-marker';
-
-addDecorator(withMarker);
-
 export const parameters = {
   marker: {
     destination: 'abcd1234567890', // <- Your unique destination ID
@@ -48,22 +45,12 @@ export const parameters = {
 }
 ```
 
-It's possible to pass other Marker options to the `marker` parameter, either globally or per story. For example, custom metadata can be passed per story with the `customData` property:
+### Marker
 
-```js
-export default {
-  title: 'Example/Page',
-  component: Page,
-  parameters: {
-    marker: {
-      customData: {
-        story: 'Page'
-      }
-    }
-  }
-};
-```
+Your Marker destination and other Marker configuration options can be found on the [Marker SDK documentation](https://marker.io/blog/integrate-web-app-browser-sdk).
 
-Where to find your Marker destination and other Marker configuration options can be found on the [Marker SDK documentation](https://marker.io/blog/integrate-web-app-browser-sdk).
+The Widget > Button > Button visibility setting should be set to "hidden" as this addon adds a custom feedback button to the Storybook toolbar.
+
+---
 
 Made with ☕ at [Etch](https://etch.co)
