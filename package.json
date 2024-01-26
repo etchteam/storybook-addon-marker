@@ -10,9 +10,10 @@
     "preview.js"
   ],
   "scripts": {
-    "prepare": "babel ./src --out-dir ./dist",
+    "prepare": "husky install; babel ./src --out-dir ./dist",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "lint": "eslint --fix '*.{ts,tsx,js,jsx}' && stylelint --fix '**/*.{css,scss}'"
   },
   "repository": {
     "type": "git",
@@ -53,6 +54,10 @@
     "@babel/core": "^7.23.9",
     "@babel/preset-env": "^7.23.9",
     "@babel/preset-react": "^7.23.3",
+    "@commitlint/cli": "^18.4.3",
+    "@commitlint/config-conventional": "^18.4.3",
+    "@etchteam/eslint-config": "^1.7.1",
+    "@etchteam/stylelint-config": "^1.5.0",
     "@storybook/addon-actions": "^7.6.10",
     "@storybook/addon-essentials": "^7.6.10",
     "@storybook/addon-links": "^7.6.10",
@@ -64,10 +69,13 @@
     "@storybook/theming": "^7.0.0",
     "babel-loader": "^9.1.3",
     "eslint": "^8.56.0",
-    "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-storybook": "^0.6.15",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.1.0",
+    "prettier": "^3.1.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "storybook": "^7.6.10"
+    "storybook": "^7.6.10",
+    "stylelint": "^15.11.0"
   }
 }

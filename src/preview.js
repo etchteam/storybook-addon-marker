@@ -1,4 +1,4 @@
-import { WIDGET_KEY } from "./constants";
+import { WIDGET_KEY } from './constants';
 
 const preview = {
   globals: {

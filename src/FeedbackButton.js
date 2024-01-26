@@ -1,14 +1,16 @@
+import markerSDK from '@marker.io/browser';
+import { Button } from '@storybook/components';
+import { useGlobals, useParameter } from '@storybook/manager-api';
 import React, { useCallback, useEffect } from 'react';
 
-import { useGlobals, useParameter } from '@storybook/manager-api';
-import { Button } from '@storybook/components';
-import markerSDK from '@marker.io/browser';
 import { WIDGET_KEY, TOOL_ID } from './constants';
 
 const hideDefaultMarkerButton = () => {
-  const markerBtns = [...document.querySelectorAll('.marker-app #feedback-button')];
-  markerBtns.forEach(markerBtn => markerBtn.style.display = 'none');
-}
+  const markerBtns = [
+    ...document.querySelectorAll('.marker-app #feedback-button'),
+  ];
+  markerBtns.forEach((markerBtn) => (markerBtn.style.display = 'none'));
+};
 
 export default function FeedbackButton() {
   const [globals, updateGlobals] = useGlobals();
@@ -20,15 +22,17 @@ export default function FeedbackButton() {
       return;
     }
 
-    markerSDK.loadWidget({
-      destination: destination,
-      ...config
-    }).then(() => {
-      hideDefaultMarkerButton();
-      updateGlobals({
-        [WIDGET_KEY]: true
+    markerSDK
+      .loadWidget({
+        destination: destination,
+        ...config,
+      })
+      .then(() => {
+        hideDefaultMarkerButton();
+        updateGlobals({
+          [WIDGET_KEY]: true,
+        });
       });
-    });
   }, [destination]);
 
   const handleSendFeedback = useCallback(() => {
@@ -51,4 +55,4 @@ export default function FeedbackButton() {
       Feedback
     </Button>
   ) : null;
-};
+}
