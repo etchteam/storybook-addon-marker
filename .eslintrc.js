@@ -1,18 +1,6 @@
 module.exports = {
-  "env": {
-    "browser": true,
-    "es2021": true
+  extends: ['@etchteam', 'plugin:storybook/recommended'],
+  rules: {
+    'import/default': 0,
   },
-  "extends": ["plugin:react/recommended", "plugin:storybook/recommended"],
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
-    "ecmaVersion": 12,
-    "sourceType": "module"
-  },
-  "plugins": ["react"],
-  "rules": {
-    "react/display-name": false
-  }
 };
