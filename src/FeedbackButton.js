@@ -1,9 +1,9 @@
 import markerSDK from '@marker.io/browser';
 import { Button } from '@storybook/components';
-import { useGlobals, useParameter } from '@storybook/manager-api';
-import React, { useCallback, useEffect } from 'react';
+import { useParameter } from '@storybook/manager-api';
+import React, { useCallback, useEffect, useState } from 'react';
 
-import { WIDGET_KEY, TOOL_ID } from './constants';
+import { TOOL_ID } from './constants';
 
 const hideDefaultMarkerButton = () => {
   const markerBtns = [
@@ -13,12 +13,11 @@ const hideDefaultMarkerButton = () => {
 };
 
 export default function FeedbackButton() {
-  const [globals, updateGlobals] = useGlobals();
+  const [markerLoaded, setMarkerLoaded] = useState();
   const { destination, mode, ...config } = useParameter('marker', {});
-  const isActive = globals[WIDGET_KEY];
 
   useEffect(() => {
-    if (!destination || isActive) {
+    if (!destination || markerLoaded || window.Marker) {
       return;
     }
 
@@ -29,25 +28,22 @@ export default function FeedbackButton() {
       })
       .then(() => {
         hideDefaultMarkerButton();
-        updateGlobals({
-          [WIDGET_KEY]: true,
-        });
+        setMarkerLoaded(true);
       });
   }, [destination]);
 
   const handleSendFeedback = useCallback(() => {
     window.Marker?.capture(mode);
-  }, [mode, globals[WIDGET_KEY]]);
+  }, [mode]);
 
-  return isActive ? (
+  return markerLoaded ? (
     <Button
       style={{
         height: '28px',
-        'margin-block-start': '6px',
-        'margin-inline-start': '4px',
+        marginBlockStart: '6px',
+        marginInlineStart: '4px',
       }}
       key={TOOL_ID}
-      active={isActive}
       onClick={handleSendFeedback}
       outline
       small
