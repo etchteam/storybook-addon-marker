@@ -11,7 +11,8 @@
   "scripts": {
     "prepare": "husky install; babel ./src --out-dir ./dist",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "lint": "eslint --fix '*.{ts,tsx,js,jsx}' && stylelint --fix '**/*.{css,scss}'"
   },
   "repository": {
     "type": "git",
