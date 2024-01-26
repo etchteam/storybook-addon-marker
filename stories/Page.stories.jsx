@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { Page } from './Page';
 import * as HeaderStories from './Header.stories';
+import { Page } from './Page';
 
 export default {
   title: 'Example/Page',
@@ -9,10 +9,10 @@ export default {
   parameters: {
     marker: {
       customData: {
-        story: 'Page'
-      }
-    }
-  }
+        story: 'Page',
+      },
+    },
+  },
 };
 
 const Template = (args) => <Page {...args} />;
