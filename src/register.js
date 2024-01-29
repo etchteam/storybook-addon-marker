@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { addons, types } from '@storybook/manager-api';
 import { styled } from '@storybook/theming';
 import { useChannel } from '@storybook/api';
@@ -23,19 +23,10 @@ const StyledButton = styled.button`
 `;
 
 const Button = () => {
-  const [show, setShow] = useState(false);
-  const emit = useChannel({
-    showButton: (buttonShouldShow) => {
-      setShow(buttonShouldShow);
-    }
-  });
+  const emit = useChannel({});
 
   const handleClick = () => {
     emit('sendFeedback');
-  }
-
-  if (!show) {
-    return null;
   }
 
   return (
