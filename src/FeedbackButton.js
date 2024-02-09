@@ -1,9 +1,29 @@
 import markerSDK from '@marker.io/browser';
-import { Button } from '@storybook/components';
+import { Icons, IconButton } from '@storybook/components';
 import { useParameter } from '@storybook/manager-api';
+import { styled } from '@storybook/theming';
 import React, { useCallback, useEffect, useState } from 'react';
 
 import { TOOL_ID } from './constants';
+
+const IconButtonWithLabel = styled(IconButton)(() => ({
+  display: 'inline-flex',
+  alignItems: 'center',
+}));
+
+const IconButtonLabel = styled.div(({ theme }) => ({
+  display: 'inline-block',
+  textDecoration: 'none',
+  padding: '10px 5px',
+  fontWeight: theme.typography.weight.bold,
+  fontSize: theme.typography.size.s2 - 1,
+  lineHeight: '1',
+  height: 37,
+  border: 'none',
+  borderTop: '3px solid transparent',
+  borderBottom: '3px solid transparent',
+  background: 'transparent',
+}));
 
 const hideDefaultMarkerButton = () => {
   const markerBtns = [
@@ -37,18 +57,9 @@ export default function FeedbackButton() {
   }, [mode]);
 
   return markerLoaded ? (
-    <Button
-      style={{
-        height: '28px',
-        marginBlockStart: '6px',
-        marginInlineStart: '4px',
-      }}
-      key={TOOL_ID}
-      onClick={handleSendFeedback}
-      outline
-      small
-    >
-      Feedback
-    </Button>
+    <IconButtonWithLabel key={TOOL_ID} onClick={handleSendFeedback}>
+      <Icons icon="comment" />
+      <IconButtonLabel>Feedback</IconButtonLabel>
+    </IconButtonWithLabel>
   ) : null;
 }
