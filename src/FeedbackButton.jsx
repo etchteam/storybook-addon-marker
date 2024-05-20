@@ -1,5 +1,6 @@
 import markerSDK from '@marker.io/browser';
-import { Icons, IconButton } from '@storybook/components';
+import { IconButton } from '@storybook/components';
+import { CommentIcon } from '@storybook/icons';
 import { useParameter } from '@storybook/manager-api';
 import { styled } from '@storybook/theming';
 import React, { useCallback, useEffect, useState } from 'react';
@@ -58,7 +59,7 @@ export default function FeedbackButton() {
 
   return markerLoaded ? (
     <IconButtonWithLabel key={TOOL_ID} onClick={handleSendFeedback}>
-      <Icons icon="comment" />
+      <CommentIcon />
       <IconButtonLabel>Feedback</IconButtonLabel>
     </IconButtonWithLabel>
   ) : null;

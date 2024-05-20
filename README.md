@@ -19,7 +19,7 @@ Create a file called `main.js` in your `.storybook` config folder.
 Add the following content to it:
 
 ```js
-module.exports = {
+export default {
   addons: ['@etchteam/storybook-addon-marker']
 }
 ```
@@ -27,9 +27,11 @@ module.exports = {
 Then create a file called `preview.js` in the same folder and add your [Marker destination](https://marker.io/blog/integrate-web-app-browser-sdk) as a [parameter](https://storybook.js.org/docs/react/writing-stories/parameters).
 
 ```js
-export const parameters = {
-  marker: {
-    destination: 'abcd1234567890', // <- Your unique destination ID
+export default {
+  parameters: {
+    marker: {
+      destination: 'abcd1234567890', // <- Your unique destination ID
+    }
   }
 }
 ```

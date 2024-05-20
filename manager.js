@@ -1,1 +1,1 @@
-module.exports = require('./dist/manager.js');
+import './dist/manager';
