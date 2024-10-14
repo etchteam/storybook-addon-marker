@@ -1,11 +1,10 @@
-import markerSDK from '@marker.io/browser';
 import { IconButton } from '@storybook/components';
 import { CommentIcon } from '@storybook/icons';
-import { useParameter } from '@storybook/manager-api';
+import { useChannel } from '@storybook/manager-api';
 import { styled } from '@storybook/theming';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
-import { TOOL_ID } from './constants';
+import { EVENTS, TOOL_ID } from './constants';
 
 const IconButtonWithLabel = styled(IconButton)(() => ({
   display: 'inline-flex',
@@ -26,36 +25,18 @@ const IconButtonLabel = styled.div(({ theme }) => ({
   background: 'transparent',
 }));
 
-const hideDefaultMarkerButton = () => {
-  const markerBtns = [
-    ...document.querySelectorAll('.marker-app #feedback-button'),
-  ];
-  markerBtns.forEach((markerBtn) => (markerBtn.style.display = 'none'));
-};
-
 export default function FeedbackButton() {
-  const [markerLoaded, setMarkerLoaded] = useState();
-  const { destination, mode, ...config } = useParameter('marker', {});
+  const [markerLoaded, setMarkerLoaded] = useState(false);
 
-  useEffect(() => {
-    if (!destination || markerLoaded || window.Marker) {
-      return;
-    }
-
-    markerSDK
-      .loadWidget({
-        destination: destination,
-        ...config,
-      })
-      .then(() => {
-        hideDefaultMarkerButton();
-        setMarkerLoaded(true);
-      });
-  }, [destination]);
+  const emit = useChannel({
+    [EVENTS.LOADED]: () => {
+      setMarkerLoaded(true);
+    },
+  });
 
   const handleSendFeedback = useCallback(() => {
-    window.Marker?.capture(mode);
-  }, [mode]);
+    emit(EVENTS.CAPTURE);
+  }, [emit]);
 
   return markerLoaded ? (
     <IconButtonWithLabel key={TOOL_ID} onClick={handleSendFeedback}>

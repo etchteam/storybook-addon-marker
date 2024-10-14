@@ -10,9 +10,7 @@ A Storybook Addon to add a [Marker.io](https://marker.io/) feedback button in [S
 npm install @etchteam/storybook-addon-marker --save-dev
 ```
 
-## Configuration
-
-### Storybook
+## Configuring Storybook
 
 Create a file called `main.js` in your `.storybook` config folder.
 
@@ -24,34 +22,44 @@ export default {
 }
 ```
 
-Then create a file called `preview.js` in the same folder and add your [Marker destination](https://marker.io/blog/integrate-web-app-browser-sdk) as a [parameter](https://storybook.js.org/docs/react/writing-stories/parameters).
+Then create a file called `preview.js` in the same folder and add your [Marker project ID](https://marker.io/blog/integrate-web-app-browser-sdk) as a [parameter](https://storybook.js.org/docs/react/writing-stories/parameters).
 
 ```js
 export default {
   parameters: {
     marker: {
-      destination: 'abcd1234567890', // <- Your unique destination ID
+      project: 'abcd1234567890', // Your unique project ID
     }
   }
 }
 ```
 
-To set the type of capture to trigger, the optional `mode` property can be added to the marker options:
+Only `project` is required, the [rest of the marker widget params](https://github.com/marker-io/browser-sdk/blob/b5b3b9b19c7525be7dfa3f92b745f74f8e305303/src/index.ts#L7) are accepted and will be passed down to [the `loadWidget` method](https://github.com/marker-io/browser-sdk?tab=readme-ov-file#method-1-passing-custom-metadata-while-loading-your-widget).
+
+Additionally, the `mode` option of [the browser SDK `capture` method](https://github.com/marker-io/browser-sdk?tab=readme-ov-file#widgetcapturemode) can be added to this config:
 
 ```js
 export const parameters = {
   marker: {
-    destination: 'abcd1234567890', // <- Your unique destination ID
+    project: 'abcd1234567890', // <- Your unique project ID
     mode: 'fullscreen', // fullscreen | advanced
   }
 }
 ```
 
-### Marker
+## Configuring Marker
 
-Your Marker destination and other Marker configuration options can be found on the [Marker SDK documentation](https://marker.io/blog/integrate-web-app-browser-sdk).
+Guidance on how to locate your Marker project and other Marker configuration options can be found on the [Marker website](https://help.marker.io/en/collections/3646812-configuration).
 
-The Widget > Button > Button visibility setting should be set to "hidden" as this addon adds a custom feedback button to the Storybook toolbar.
+### Hiding the Marker widget button
+
+This addon places a feedback button in the Storybook toolbar and automatically hides the default Marker button.
+
+If you're finding the duplicate button still appears, there is a Marker setting under Widget > Button > Button visibility that can be set to "hidden".
+
+### Screenshot rendering
+
+If screenshots aren’t rendering correctly check [Markers tips and limitations](https://help.marker.io/en/articles/6282853-widget-screenshot-tips-limitations#h_96fa6c657e).
 
 ---
 
