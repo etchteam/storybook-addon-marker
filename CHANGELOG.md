@@ -1,3 +1,10 @@
+## [4.0.1](https://github.com/etchteam/storybook-addon-marker/compare/v4.0.0...v4.0.1) (2024-10-14)
+
+
+### Bug Fixes
+
+* screenshot rendering without styles ([bb6f26d](https://github.com/etchteam/storybook-addon-marker/commit/bb6f26df9c6e87018e20a23f34600761af1dd106))
+
 ## [4.0.0](https://github.com/etchteam/storybook-addon-marker/compare/v3.0.2...v4.0.0) (2024-05-28)
 
 
