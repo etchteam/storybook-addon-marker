@@ -1,6 +1,7 @@
+import markerSDK from '@marker.io/browser';
 import { IconButton } from '@storybook/components';
 import { CommentIcon } from '@storybook/icons';
-import { useChannel, useParameter } from '@storybook/manager-api';
+import { useChannel, useGlobals } from '@storybook/manager-api';
 import { styled } from '@storybook/theming';
 import React, { useCallback, useEffect, useState } from 'react';
 
@@ -28,10 +29,17 @@ const IconButtonLabel = styled.div(({ theme }) => ({
 
 export default function FeedbackButton() {
   const [markerLoaded, setMarkerLoaded] = useState(false);
-  const { destination, project, mode, ...config } = useParameter('marker', {});
+  const [globals] = useGlobals();
+  const { project, mode, ...config } = globals.marker ?? {};
 
   const emit = useChannel({
+    // The loaded event will fire when the marker decorator loads
     [EVENTS.LOADED]: () => {
+      if (window.Marker) {
+        // Unload the manager version of marker
+        window.Marker.unload();
+      }
+
       setMarkerLoaded(true);
     },
     [EVENTS.CAPTURE]: () => {
@@ -45,28 +53,21 @@ export default function FeedbackButton() {
     emit(EVENTS.CAPTURE);
   }, [emit]);
 
-  const loadMarkerOnManager = useCallback(() => {
-    if ((!destination && !project) || markerLoaded || window.Marker) {
-      return;
-    }
-
-    markerSDK
-      .loadWidget({
-        project: project ?? destination,
-        ...config,
-      })
-      .then(() => {
-        hideDefaultMarkerButton();
-        emit(EVENTS.LOADED);
-      });
-  }, [markerLoaded]);
-
   // If the decorator has not loaded within 3 seconds fallback to loading it on the manager.
   // Screenshots may appear unstyled, but it's better than no feedback button displaying.
   // This might happen on mdx docs stories where no decorators aren't called.
   useEffect(() => {
-    setTimeout(loadMarkerOnManager, 3000);
-  }, []);
+    clearTimeout(window.markerTimer);
+
+    if (project && !markerLoaded && !window.Marker) {
+      window.markerTimer = setTimeout(() => {
+        markerSDK.loadWidget({ project, ...config }).then(() => {
+          hideDefaultMarkerButton();
+          setMarkerLoaded(true);
+        });
+      }, 3000);
+    }
+  }, [project, markerLoaded]);
 
   return markerLoaded ? (
     <IconButtonWithLabel key={TOOL_ID} onClick={handleSendFeedback}>
