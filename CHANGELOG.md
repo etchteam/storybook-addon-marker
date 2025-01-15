@@ -1,3 +1,15 @@
+## [5.0.0](https://github.com/etchteam/storybook-addon-marker/compare/v4.0.1...v5.0.0) (2025-01-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* use globals instead of parameters
+
+### Bug Fixes
+
+* load a fallback marker when the decorator fails ([642aa13](https://github.com/etchteam/storybook-addon-marker/commit/642aa1330d9cdf2c17e03dd77070b5c1f41ac864))
+* use globals instead of parameters ([34b575f](https://github.com/etchteam/storybook-addon-marker/commit/34b575f330f426ff468537f4980169be7209c660))
+
 ## [4.0.1](https://github.com/etchteam/storybook-addon-marker/compare/v4.0.0...v4.0.1) (2024-10-14)
 
 
