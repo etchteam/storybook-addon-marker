@@ -22,15 +22,15 @@ export default {
 }
 ```
 
-Then create a file called `preview.js` in the same folder and add your [Marker project ID](https://marker.io/blog/integrate-web-app-browser-sdk) as a [parameter](https://storybook.js.org/docs/react/writing-stories/parameters).
+Then create a file called `preview.js` in the same folder and add your [Marker project ID](https://marker.io/blog/integrate-web-app-browser-sdk) in the [initalGlobals](https://storybook.js.org/docs/essentials/toolbars-and-globals).
 
 ```js
 export default {
-  parameters: {
+  initialGlobals: {
     marker: {
       project: 'abcd1234567890', // Your unique project ID
-    }
-  }
+    },
+  },
 }
 ```
 
@@ -39,11 +39,13 @@ Only `project` is required, the [rest of the marker widget params](https://githu
 Additionally, the `mode` option of [the browser SDK `capture` method](https://github.com/marker-io/browser-sdk?tab=readme-ov-file#widgetcapturemode) can be added to this config:
 
 ```js
-export const parameters = {
-  marker: {
-    project: 'abcd1234567890', // <- Your unique project ID
-    mode: 'fullscreen', // fullscreen | advanced
-  }
+export default {
+  initialGlobals: {
+    marker: {
+      project: 'abcd1234567890', // <- Your unique project ID
+      mode: 'fullscreen', // fullscreen | advanced
+    },
+  },
 }
 ```
 

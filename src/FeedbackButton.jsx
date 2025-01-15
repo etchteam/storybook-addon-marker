@@ -1,10 +1,12 @@
+import markerSDK from '@marker.io/browser';
 import { IconButton } from '@storybook/components';
 import { CommentIcon } from '@storybook/icons';
-import { useChannel } from '@storybook/manager-api';
+import { useChannel, useGlobals } from '@storybook/manager-api';
 import { styled } from '@storybook/theming';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { EVENTS, TOOL_ID } from './constants';
+import { hideDefaultMarkerButton } from './hideDefaultMarkerButton';
 
 const IconButtonWithLabel = styled(IconButton)(() => ({
   display: 'inline-flex',
@@ -27,16 +29,45 @@ const IconButtonLabel = styled.div(({ theme }) => ({
 
 export default function FeedbackButton() {
   const [markerLoaded, setMarkerLoaded] = useState(false);
+  const [globals] = useGlobals();
+  const { project, mode, ...config } = globals.marker ?? {};
 
   const emit = useChannel({
+    // The loaded event will fire when the marker decorator loads
     [EVENTS.LOADED]: () => {
+      if (window.Marker) {
+        // Unload the manager version of marker
+        window.Marker.unload();
+      }
+
       setMarkerLoaded(true);
+    },
+    [EVENTS.CAPTURE]: () => {
+      window.Marker?.capture(mode)?.then(() => {
+        hideDefaultMarkerButton(); // This sometimes reappears after capturing
+      });
     },
   });
 
   const handleSendFeedback = useCallback(() => {
     emit(EVENTS.CAPTURE);
   }, [emit]);
+
+  // If the decorator has not loaded within 3 seconds fallback to loading it on the manager.
+  // Screenshots may appear unstyled, but it's better than no feedback button displaying.
+  // This might happen on mdx docs stories where no decorators aren't called.
+  useEffect(() => {
+    clearTimeout(window.markerTimer);
+
+    if (project && !markerLoaded && !window.Marker) {
+      window.markerTimer = setTimeout(() => {
+        markerSDK.loadWidget({ project, ...config }).then(() => {
+          hideDefaultMarkerButton();
+          setMarkerLoaded(true);
+        });
+      }, 3000);
+    }
+  }, [project, markerLoaded]);
 
   return markerLoaded ? (
     <IconButtonWithLabel key={TOOL_ID} onClick={handleSendFeedback}>
