@@ -1,9 +1,9 @@
 import markerSDK from '@marker.io/browser';
-import { IconButton } from '@storybook/components';
 import { CommentIcon } from '@storybook/icons';
-import { useChannel, useGlobals } from '@storybook/manager-api';
-import { styled } from '@storybook/theming';
 import React, { useCallback, useEffect, useState } from 'react';
+import { IconButton } from 'storybook/internal/components';
+import { useChannel, useGlobals } from 'storybook/manager-api';
+import { styled } from 'storybook/theming';
 
 import { EVENTS, TOOL_ID } from './constants';
 import { hideDefaultMarkerButton } from './hideDefaultMarkerButton';
