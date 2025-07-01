@@ -1,8 +1,8 @@
 import markerSDK from '@marker.io/browser';
-import { IconButton } from '@storybook/components';
+import { IconButton } from 'storybook/internal/components';
 import { CommentIcon } from '@storybook/icons';
-import { useChannel, useGlobals } from '@storybook/manager-api';
-import { styled } from '@storybook/theming';
+import { useChannel, useGlobals } from 'storybook/manager-api';
+import { styled } from 'storybook/theming';
 import React, { useCallback, useEffect, useState } from 'react';
 
 import { EVENTS, TOOL_ID } from './constants';

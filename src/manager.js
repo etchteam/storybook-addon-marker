@@ -1,4 +1,4 @@
-import { addons, types } from '@storybook/manager-api';
+import { addons, types } from 'storybook/manager-api';
 
 import FeedbackButton from './FeedbackButton';
 import { ADDON_ID, TOOL_ID } from './constants';
