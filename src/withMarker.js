@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import markerSDK from '@marker.io/browser';
-import { useChannel, useGlobals } from '@storybook/preview-api';
+import { useChannel, useGlobals } from 'storybook/preview-api';
 
 import { EVENTS } from './constants';
 import { hideDefaultMarkerButton } from './hideDefaultMarkerButton';
