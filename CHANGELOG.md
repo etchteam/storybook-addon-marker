@@ -1,3 +1,14 @@
+## [6.0.0](https://github.com/etchteam/storybook-addon-marker/compare/v5.0.0...v6.0.0) (2025-07-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* migrate to storybook v9
+
+### Features
+
+* migrate to storybook v9 ([b994b3c](https://github.com/etchteam/storybook-addon-marker/commit/b994b3c861c3316e43ef2a8371463f36c4e1654b))
+
 ## [5.0.0](https://github.com/etchteam/storybook-addon-marker/compare/v4.0.1...v5.0.0) (2025-01-15)
 
 
