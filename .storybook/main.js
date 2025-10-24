@@ -3,7 +3,7 @@ const config = {
   addons: [
     '@storybook/addon-docs',
     '@storybook/addon-webpack5-compiler-swc',
-    './local-preset.js',
+    import.meta.resolve('./local-preset.js'),
   ],
   framework: {
     name: '@storybook/react-webpack5',
