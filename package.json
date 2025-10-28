@@ -6,10 +6,7 @@
   "main": "dist/manager.js",
   "exports": {
     "./manager": "./dist/manager.js",
-    "./preview": {
-      "import": "./dist/preview.js",
-      "require": "./dist/preview.cjs"
-    },
+    "./preview": "./dist/preview.js",
     "./package.json": "./package.json"
   },
   "files": [
@@ -19,6 +16,7 @@
     "preview.js"
   ],
   "scripts": {
+    "prebuild": "node -e \"fs.rmSync('./dist', { recursive: true, force: true })\"",
     "prepare": "tsup",
     "storybook": "npm run prepare && storybook dev -p 6006",
     "build-storybook": "storybook build",
@@ -60,10 +58,10 @@
     "@semantic-release/github": "^9.2.6",
     "@semantic-release/npm": "^11.0.2",
     "@semantic-release/release-notes-generator": "^12.1.0",
-    "@storybook/addon-docs": "^9.0.0",
+    "@storybook/addon-docs": "^10.0.0-rc.0",
     "@storybook/addon-webpack5-compiler-swc": "^1.0.2",
     "@storybook/icons": "^1.2.9",
-    "@storybook/react-webpack5": "^9.0.0",
+    "@storybook/react-webpack5": "^10.0.0-rc.0",
     "@swc/core": "^1.4.17",
     "@typescript-eslint/eslint-plugin": "^8.35.1",
     "@typescript-eslint/parser": "^8.35.1",
@@ -75,12 +73,12 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "semantic-release": "^23.0.0",
-    "storybook": "^9.0.0",
+    "storybook": "^10.0.0-rc.0",
     "swc-loader": "^0.2.6",
     "tsup": "^8.0.2",
     "typescript": "^5.4.5"
   },
   "peerDependencies": {
-    "storybook": "^9.0.0"
+    "storybook": "^10.0.0"
   }
 }
