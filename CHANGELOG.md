@@ -1,3 +1,14 @@
+## [7.0.0](https://github.com/etchteam/storybook-addon-marker/compare/v6.0.0...v7.0.0) (2025-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* storybook 10 support
+
+### Features
+
+* storybook 10 support ([0393f15](https://github.com/etchteam/storybook-addon-marker/commit/0393f15069cc0b70b0658a31397956bfea78188e))
+
 ## [6.0.0](https://github.com/etchteam/storybook-addon-marker/compare/v5.0.0...v6.0.0) (2025-07-01)
 
 
